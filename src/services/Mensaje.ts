@@ -35,11 +35,9 @@ export class MensajeService {
             */
 
             socket.on('register-user', async (username: string) => {
-                /**if (!username || !username.trim()) return;
-
+                if (!username || !username.trim()) return;
                 socket.data.username = username.trim();
-
-                */Logging.info(`Usuario registrado en socket: ${socket.data.username}`);
+                Logging.info(`Usuario registrado en socket: ${socket.data.username}`);
                 await this.emitirUsuariosConectados();
             });
 
