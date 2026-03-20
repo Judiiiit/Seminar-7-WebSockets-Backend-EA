@@ -9,6 +9,16 @@ export class MensajeService {
         this.io = io;
     }
 
+    private async emitirUsuariosConectados(): Promise<void> {
+        const socketsConectados = await this.io.fetchSockets();
+
+        const usuariosConectados = socketsConectados
+            .map((socket) => socket.data.username)
+            .filter((username) => !!username);
+
+        this.io.emit('active-users', usuariosConectados);
+    }
+
     /**
      * Inicializa los listeners de Socket.io
      */
@@ -23,6 +33,15 @@ export class MensajeService {
                 Logging.info(`Socket ${socket.id} se unió a organización ${organizacionId}`);
             });
             */
+
+            socket.on('register-user', async (username: string) => {
+                /**if (!username || !username.trim()) return;
+
+                socket.data.username = username.trim();
+
+                */Logging.info(`Usuario registrado en socket: ${socket.data.username}`);
+                await this.emitirUsuariosConectados();
+            });
 
             socket.on('typing', (data: { usuario: string }) => {
                 Logging.info(`${data.usuario} está escribiendo...`);
@@ -65,8 +84,9 @@ export class MensajeService {
             });
 
             // Desconexión
-            socket.on('disconnect', () => {
+            socket.on('disconnect', async () => {
                 Logging.info(`Socket desconectado: ${socket.id}`);
+                await this.emitirUsuariosConectados();
             });
         });
     }
