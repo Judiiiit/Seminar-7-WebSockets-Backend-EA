@@ -15,8 +15,9 @@ export class MensajeService {
         const usuariosConectados = socketsConectados
             .map((socket) => socket.data.username)
             .filter((username) => !!username);
+        const usuariosNoDuplicados = [...new Set(usuariosConectados)];
 
-        this.io.emit('active-users', usuariosConectados);
+        this.io.emit('active-users', usuariosNoDuplicados);
     }
 
     /**
