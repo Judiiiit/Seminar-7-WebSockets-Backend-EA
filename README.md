@@ -6,6 +6,18 @@ Esta es la rama **`socket_io`**, que contiene la implementación base necesaria 
 
 ---
 
+## Documentación
+
+Para completar el ejercicio propuesto he usado:
+- Para entender bien WebSockets: https://www.arsys.es/blog/websockets-que-son-y-como-funcionan 
+- Para entender la librería socket.io: https://socket.io/docs/v4/
+- Para ver eventos de socket.io: https://socket.io/docs/v4/emitting-events/
+- Uso de IA generativa (ChatGPT): revisar errores y resolver dudas, ayuda a la hora de entender bien que hacían algunos archivos antes de emepzar ele ejercicio, ayuda al entender como se usan los metadatos de los sockets.
+
+---
+
+---
+
 ## 🎯 Objetivo de la Clase
 
 En la aplicación de Chat con la que hemos estado trabajando, el objetivo de hoy es implementar diferentes funcionalidades interactivas en tiempo real:
